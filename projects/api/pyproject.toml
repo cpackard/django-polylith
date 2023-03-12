@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "api_project"
+version = "0.1.0"
+description = "Sample project for all Components and the API base."
+authors = ["Christian Packard <christian@cpacklabs.com>"]
+readme = "README.md"
+packages = [ { include = "api_project" } ]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+api = { path = "../../bases/api/", develop = false }
+django = "^4.1.7"
+
+[tool.poetry.group.dev.dependencies]
+django-extensions = {version = "^3.2.1"}

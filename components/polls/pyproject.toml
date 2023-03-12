@@ -1,0 +1,10 @@
+[tool.poetry]
+name = "polls"
+version = "0.1.0"
+description = "Sample Polls component."
+authors = ["Christian Packard <christian@cpacklabs.com>"]
+readme = "README.md"
+packages = [ { include = "polls", from = "./src" } ]
+
+[tool.poetry.dependencies]
+python = "^3.11"

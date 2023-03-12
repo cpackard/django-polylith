@@ -4,7 +4,12 @@ version = "0.1.0"
 description = "Demo of the Polylith architecture using Django apps."
 authors = ["Christian Packard <christian@cpacklabs.com>"]
 readme = "README.md"
-packages = [{include = "polylith_django"}]
+packages = [
+    { include = "development" },
+    { include = "polls", from = "./components/polls/src/" },
+    { include = "api", from = "./bases/api/src/" },
+    { include = "api_project", from = "./projects/api/" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -12,6 +17,7 @@ django = "^4.1.7"
 boto3 = "^1.26.81"
 boto3-stubs = "^1.26.81"
 psycopg2 = "^2.9.5"
+django-extensions = "^3.2.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.1.0"
@@ -45,7 +51,7 @@ import_heading_django = "Django Libraries"
 import_heading_firstparty = "API Modules"
 import_heading_localfolder = "Local Modules"
 
-known_firstparty = ["polylith_django"]
+known_firstparty = ["api"]
 known_django = ["django", "rest_framework"]
 # known_localfolder = ["cavi_service"]
 
