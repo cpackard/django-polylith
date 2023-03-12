@@ -1,0 +1,11 @@
+[tool.poetry]
+name = "api"
+version = "0.1.0"
+description = "Sample API base."
+authors = ["Christian Packard <christian@cpacklabs.com>"]
+readme = "README.md"
+packages = [ { include = "api", from = "src" } ]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+polls = { path = "../../components/polls/", develop = false }
