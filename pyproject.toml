@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "Polylith Django Demo"
+version = "0.1.0"
+description = "Demo of the Polylith architecture using Django apps."
+authors = ["Christian Packard <christian@cpacklabs.com>"]
+readme = "README.md"
+packages = [{include = "polylith_django"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.1.7"
+boto3 = "^1.26.81"
+boto3-stubs = "^1.26.81"
+psycopg2 = "^2.9.5"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.1.0"
+mypy = "^1.0.1"
+isort = "^5.12.0"
+
+[tool.poetry.group.emacs.dependencies]
+python-lsp-server = "^1.7.1"
+python-lsp-black = "^1.2.1"
+pylsp-mypy = "^0.6.6"
+autoflake = "^2.0.1"
+importmagic = "^0.1.7"
+epc = "^0.0.5"
+werkzeug = "^2.2.3"
+debugpy = "^1.6.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3  # vertical hanging indent https://pycqa.github.io/isort/docs/configuration/multi_line_output_modes.html
+
+import_heading_stdlib = "Standard Library"
+import_heading_thirdparty = "Third-Party Libraries"
+import_heading_django = "Django Libraries"
+import_heading_firstparty = "API Modules"
+import_heading_localfolder = "Local Modules"
+
+known_firstparty = ["polylith_django"]
+known_django = ["django", "rest_framework"]
+# known_localfolder = ["cavi_service"]
+
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "DJANGO", "FIRSTPARTY", "LOCALFOLDER"]
