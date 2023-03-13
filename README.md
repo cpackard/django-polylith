@@ -12,6 +12,16 @@ This project uses [Poetry]() as the package manager. To install the tool on your
 curl -sSL https://install.python-poetry.org | python3 -
 ```
 
+## Running a local project
+
+After installing Poetry and downloading the repo, install the dependencies for the project and run the migrations. Then you're set to run the development server:
+
+```shell
+poetry install
+DJANGO_SETTINGS_MODULE=api_project.settings poetry run python manage.py migrate
+DJANGO_SETTINGS_MODULE=api_project.settings poetry run python manage.py runserver
+```
+
 ## Development
 
 ### Adding a new component
@@ -32,12 +42,4 @@ Then apply the migrations as normal:
 
 ```shell
 poetry run python manage.py migrate
-```
-
-### Running a local project
-
-To run any of the `projects/` in development mode, use the top-level `manage.py` and specify that project's `settings.py` module:
-
-```shell
-DJANGO_SETTINGS_MODULE=api_project.settings poetry run python manage.py runserver
 ```
