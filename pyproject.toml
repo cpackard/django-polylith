@@ -14,9 +14,9 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.11"
 django = "^4.1.7"
-boto3 = "^1.26.81"
-boto3-stubs = "^1.26.81"
-psycopg2 = "^2.9.5"
+polls = { path = "components/polls", develop = true }
+api = { path = "bases/api", develop = true }
+api_project = { path = "projects/api", develop = true }
 django-extensions = "^3.2.1"
 
 [tool.poetry.group.dev.dependencies]

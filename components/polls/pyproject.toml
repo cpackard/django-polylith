@@ -8,3 +8,4 @@ packages = [ { include = "polls", from = "./src" } ]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+pytz = "^2022.7.1"
