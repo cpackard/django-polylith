@@ -38,6 +38,9 @@ debugpy = "^1.6.6"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[tool.poetry.scripts]
+create_component = "development.scripts:create_component"
+
 [tool.black]
 line-length = 120
 

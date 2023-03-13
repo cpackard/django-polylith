@@ -26,9 +26,18 @@ DJANGO_SETTINGS_MODULE=api_project.settings poetry run python manage.py runserve
 
 ### Adding a new component
 
-- Create the directory: `mkdir -p components/polls/src`
-- Generate Django boilerplate: `poetry run python manage.py startapp polls components/src/polls`
-- `cd` into the new directory and run `poetry config virtualenvs.create false --local` so you don't create sub-venvs.
+You can create a new component using the project's command:
+
+```shell
+poetry shell
+create_component <new_component_name>
+```
+
+You can also get help for any command by passing the `--help` flag:
+
+```shell
+create_component --help
+```
 
 ### Create migrations
 
