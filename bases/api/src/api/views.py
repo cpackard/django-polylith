@@ -4,8 +4,10 @@ from questions import interface as questions
 
 # Django Libraries
 from django.http import HttpRequest, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 
+@csrf_exempt
 def questions_view(request: HttpRequest) -> JsonResponse:
     querydict = request.GET if request.method == "GET" else request.POST
     question: str = next(iter(querydict.get("question", [])), None)
@@ -22,6 +24,7 @@ def questions_view(request: HttpRequest) -> JsonResponse:
     return JsonResponse({"errors": ["Unsupported method."]}, status=405)
 
 
+@csrf_exempt
 def choices_view(request: HttpRequest) -> JsonResponse:
     querydict = request.GET if request.method == "GET" else request.POST
     question: int = next(iter(querydict.get("question", [])), None)

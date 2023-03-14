@@ -66,3 +66,11 @@ class Car(models.Model):
         on_delete=models.CASCADE,
     )
 ```
+
+### Running Tests
+
+To run tests for the entire project, run this command from the root of the repo:
+
+```shell
+poetry run pytest -v
+```
