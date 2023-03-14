@@ -12,5 +12,3 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.11"
-# choices = { path = "../../components/choices/", develop = true }
-# questions = { path = "../../components/questions/", develop = true }
