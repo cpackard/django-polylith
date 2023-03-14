@@ -1,12 +1,30 @@
+[build-system]
+requires = [ "poetry-core",]
+build-backend = "poetry.core.masonry.api"
+
 [tool.poetry]
 name = "Polylith Django Demo"
 version = "0.1.0"
 description = "Demo of the Polylith architecture using Django apps."
-authors = ["Christian Packard <christian@cpacklabs.com>"]
+authors = [ "Christian Packard <christian@cpacklabs.com>",]
 readme = "README.md"
-packages = [
-    { include = "development" },
-]
+[[tool.poetry.packages]]
+include = "development"
+
+[tool.black]
+line-length = 120
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+import_heading_stdlib = "Standard Library"
+import_heading_thirdparty = "Third-Party Libraries"
+import_heading_django = "Django Libraries"
+import_heading_firstparty = "API Modules"
+import_heading_localfolder = "Local Modules"
+known_firstparty = [ "api",]
+known_django = [ "django", "rest_framework",]
+sections = [ "FUTURE", "STDLIB", "THIRDPARTY", "DJANGO", "FIRSTPARTY", "LOCALFOLDER",]
 
 [tool.poetry.dependencies]
 python = "^3.11"
@@ -14,10 +32,29 @@ django = "^4.1.7"
 django-extensions = "^3.2.1"
 pytest = "^7.2.2"
 pytest-django = "^4.5.2"
-questions = { path = "components/questions", develop = true }
-choices = { path = "components/choices", develop = true }
-api = { path = "bases/api", develop = true }
-api_project = { path = "projects/api", develop = true }
+toml = "^0.10.2"
+
+[tool.poetry.scripts]
+create-component = "development.scripts:create_component"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "api_project.settings"
+
+[tool.poetry.dependencies.questions]
+path = "components/questions"
+develop = true
+
+[tool.poetry.dependencies.choices]
+path = "components/choices"
+develop = true
+
+[tool.poetry.dependencies.api]
+path = "bases/api"
+develop = true
+
+[tool.poetry.dependencies.api_project]
+path = "projects/api"
+develop = true
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.1.0"
@@ -34,32 +71,3 @@ importmagic = "^0.1.7"
 epc = "^0.0.5"
 werkzeug = "^2.2.3"
 debugpy = "^1.6.6"
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.scripts]
-create-component = "development.scripts:create_component"
-
-[tool.black]
-line-length = 120
-
-[tool.isort]
-profile = "black"
-multi_line_output = 3  # vertical hanging indent https://pycqa.github.io/isort/docs/configuration/multi_line_output_modes.html
-
-import_heading_stdlib = "Standard Library"
-import_heading_thirdparty = "Third-Party Libraries"
-import_heading_django = "Django Libraries"
-import_heading_firstparty = "API Modules"
-import_heading_localfolder = "Local Modules"
-
-known_firstparty = ["api"]
-known_django = ["django", "rest_framework"]
-# known_localfolder = ["cavi_service"]
-
-sections = ["FUTURE", "STDLIB", "THIRDPARTY", "DJANGO", "FIRSTPARTY", "LOCALFOLDER"]
-
-[tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "api_project.settings"
