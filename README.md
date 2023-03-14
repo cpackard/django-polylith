@@ -74,3 +74,12 @@ To run tests for the entire project, run this command from the root of the repo:
 ```shell
 poetry run pytest -v
 ```
+
+Alternatively:
+
+```shell
+poetry shell
+pytest -v
+```
+
+By default, this command will use the `DJANGO_SETTINGS_MODULE = "development.settings"` attribute in the root-level `pyproject.toml`. You can override this by setting a `DJANGO_SETTINGS_MODULE` environment variable or by passing the `--ds` CLI flag like `pytest --ds=api_project.settings`. See the [pytest-django docs](https://pytest-django.readthedocs.io/en/latest/configuring_django.html#) for more info.

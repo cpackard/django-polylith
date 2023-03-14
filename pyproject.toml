@@ -38,7 +38,7 @@ toml = "^0.10.2"
 create-component = "development.scripts:create_component"
 
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "api_project.settings"
+DJANGO_SETTINGS_MODULE = "development.settings"
 
 [tool.poetry.dependencies.questions]
 path = "components/questions"
