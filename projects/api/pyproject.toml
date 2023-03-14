@@ -8,8 +8,10 @@ packages = [ { include = "api_project" } ]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-api = { path = "../../bases/api/", develop = false }
 django = "^4.1.7"
+questions = { path = "../../components/questions/", develop = false }
+choices = { path = "../../components/choices/", develop = false }
+api = { path = "../../bases/api/", develop = false }
 
 [tool.poetry.group.dev.dependencies]
 django-extensions = {version = "^3.2.1"}

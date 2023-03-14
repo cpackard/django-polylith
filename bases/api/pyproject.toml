@@ -6,8 +6,6 @@ authors = ["Christian Packard <christian@cpacklabs.com>"]
 readme = "README.md"
 packages = [
     { include = "api", from = "src" },
-    { include = "questions", from = "../../components/questions/src/" },
-    { include = "choices", from = "../../components/choices/src/" },
 ]
 
 [tool.poetry.dependencies]

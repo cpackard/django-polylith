@@ -10,9 +10,6 @@ python-versions = "^3.11"
 files = []
 develop = false
 
-[package.dependencies]
-polls = {path = "../../components/polls"}
-
 [package.source]
 type = "directory"
 url = "../../bases/api"
@@ -31,6 +28,20 @@ files = [
 
 [package.extras]
 tests = ["mypy (>=0.800)", "pytest", "pytest-asyncio"]
+
+[[package]]
+name = "choices"
+version = "0.1.0"
+description = "Choices component."
+category = "main"
+optional = false
+python-versions = "^3.11"
+files = []
+develop = false
+
+[package.source]
+type = "directory"
+url = "../../components/choices"
 
 [[package]]
 name = "django"
@@ -69,18 +80,33 @@ files = [
 Django = ">=3.2"
 
 [[package]]
-name = "polls"
+name = "pytz"
+version = "2022.7.1"
+description = "World timezone definitions, modern and historical"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "pytz-2022.7.1-py2.py3-none-any.whl", hash = "sha256:78f4f37d8198e0627c5f1143240bb0206b8691d8d7ac6d78fee88b78733f8c4a"},
+    {file = "pytz-2022.7.1.tar.gz", hash = "sha256:01a0681c4b9684a28304615eba55d1ab31ae00bf68ec157ec3708a8182dbbcd0"},
+]
+
+[[package]]
+name = "questions"
 version = "0.1.0"
-description = "Sample Polls component."
+description = "Sample Questions component."
 category = "main"
 optional = false
 python-versions = "^3.11"
 files = []
 develop = false
 
+[package.dependencies]
+pytz = "^2022.7.1"
+
 [package.source]
 type = "directory"
-url = "../../components/polls"
+url = "../../components/questions"
 
 [[package]]
 name = "sqlparse"
@@ -109,4 +135,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "2b8c53f652f950182fde32e1a7acbd833bc0c97ef3080d99b03549d214ac89c7"
+content-hash = "0604a99779a0e87b026ed820128ada65cbeff16142513cbba6372a7de8b1e7a0"

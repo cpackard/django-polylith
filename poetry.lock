@@ -26,7 +26,9 @@ develop = true
 
 [package.dependencies]
 api = {path = "../../bases/api"}
+choices = {path = "../../components/choices"}
 django = "^4.1.7"
+questions = {path = "../../components/questions"}
 
 [package.source]
 type = "directory"
