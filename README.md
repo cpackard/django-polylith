@@ -18,9 +18,12 @@ After installing Poetry and downloading the repo, install the dependencies for t
 
 ```shell
 poetry install
-DJANGO_SETTINGS_MODULE=api_project.settings poetry run python manage.py migrate
-DJANGO_SETTINGS_MODULE=api_project.settings poetry run python manage.py runserver
+poetry shell
+python manage.py migrate
+python manage.py runserver
 ```
+
+You can run any command in this doc as an ad-hoc command in your root shell by prefixing it with `poetry run`. The rest of this doc assumes you're in an active `poetry shell` for brevity.
 
 ## Development
 
@@ -29,7 +32,6 @@ DJANGO_SETTINGS_MODULE=api_project.settings poetry run python manage.py runserve
 You can create a new component using the project's command:
 
 ```shell
-poetry shell
 create_component <new_component_name>
 ```
 
@@ -44,13 +46,13 @@ create_component --help
 Migrations can be created for any components by running the `makemigrations` command for it from the root of the repo:
 
 ```shell
-poetry run python manage.py makemigrations questions
+python manage.py makemigrations questions
 ```
 
 Then apply the migrations as normal:
 
 ```shell
-poetry run python manage.py migrate
+python manage.py migrate
 ```
 
 #### Defining foreign-key relationships between components
@@ -72,13 +74,6 @@ class Car(models.Model):
 To run tests for the entire project, run this command from the root of the repo:
 
 ```shell
-poetry run pytest -v
-```
-
-Alternatively:
-
-```shell
-poetry shell
 pytest -v
 ```
 
