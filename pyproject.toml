@@ -6,18 +6,22 @@ authors = ["Christian Packard <christian@cpacklabs.com>"]
 readme = "README.md"
 packages = [
     { include = "development" },
-    { include = "polls", from = "./components/polls/src/" },
-    { include = "api", from = "./bases/api/src/" },
-    { include = "api_project", from = "./projects/api/" },
+    # { include = "questions", from = "./components/questions/src/"},
+    # { include = "choices", from = "./components/choices/src/"},
+    # { include = "api", from = "./bases/api/src/" },
+    # { include = "api_project", from = "./projects/api/" },
 ]
 
 [tool.poetry.dependencies]
 python = "^3.11"
 django = "^4.1.7"
-polls = { path = "components/polls", develop = true }
+django-extensions = "^3.2.1"
+questions = { path = "components/questions", develop = true }
+choices = { path = "components/choices", develop = true }
 api = { path = "bases/api", develop = true }
 api_project = { path = "projects/api", develop = true }
-django-extensions = "^3.2.1"
+pytest = "^7.2.2"
+pytest-django = "^4.5.2"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.1.0"
@@ -59,3 +63,6 @@ known_django = ["django", "rest_framework"]
 # known_localfolder = ["cavi_service"]
 
 sections = ["FUTURE", "STDLIB", "THIRDPARTY", "DJANGO", "FIRSTPARTY", "LOCALFOLDER"]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "api_project.settings"

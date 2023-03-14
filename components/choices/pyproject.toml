@@ -1,0 +1,10 @@
+[tool.poetry]
+name = "choices"
+version = "0.1.0"
+description = "Choices component."
+authors = ["Christian Packard <christian@cpacklabs.com>"]
+readme = "README.md"
+packages = [ { include = "choices", from = "./src" } ]
+
+[tool.poetry.dependencies]
+python = "^3.11"

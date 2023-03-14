@@ -10,7 +10,7 @@ def create_component() -> None:
 
     comp_name = parser.parse_args().name
     comp_src = f"components/{comp_name}/src/{comp_name}"
-    comp_tests = f"components/{comp_name}/src/tests"
+    comp_tests = f"components/{comp_name}/tests"
 
     # create parent directories
     subprocess.run(["mkdir", "-p", comp_src])
@@ -33,4 +33,7 @@ def create_component() -> None:
     print(f'\n\t{{ include = "{comp_name}", from = "./components/{comp_name}/src/" }}')
     print("\nIn the [tool.poetry.dependencies] section:")
     print(f'\n\t{comp_name} = {{ path = "components/{comp_name}," develop = true }}')
+    print(
+        f"Finally, add the new component `{comp_name}` to the INSTALLED_APPS of development/settings.py and any relevant project's settings.py"
+    )
     print("\n")

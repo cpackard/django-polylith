@@ -5,6 +5,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("api/questions/", views.search_question, name="search_question"),
-    path("api/time/", views.current_time, name="current_time"),
+    path("api/questions/", views.questions_view, name="questions"),
+    path("api/choices/", views.choices_view, name="choices"),
 ]

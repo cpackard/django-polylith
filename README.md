@@ -44,11 +44,25 @@ create_component --help
 Migrations can be created for any components by running the `makemigrations` command for it from the root of the repo:
 
 ```shell
-poetry run python manage.py makemigrations polls
+poetry run python manage.py makemigrations questions
 ```
 
 Then apply the migrations as normal:
 
 ```shell
 poetry run python manage.py migrate
+```
+
+#### Defining foreign-key relationships between components
+
+From the [Django docs](https://docs.djangoproject.com/en/4.1/ref/models/fields/#foreignkey):
+
+> To refer to models defined in another application, you can explicitly specify a model with the full application label. For example, if the `Manufacturer` model above is defined in another application called `production`, you’d need to use:
+
+```python
+class Car(models.Model):
+    manufacturer = models.ForeignKey(
+        'production.Manufacturer',
+        on_delete=models.CASCADE,
+    )
 ```

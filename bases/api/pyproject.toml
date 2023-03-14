@@ -4,8 +4,13 @@ version = "0.1.0"
 description = "Sample API base."
 authors = ["Christian Packard <christian@cpacklabs.com>"]
 readme = "README.md"
-packages = [ { include = "api", from = "src" } ]
+packages = [
+    { include = "api", from = "src" },
+    { include = "questions", from = "../../components/questions/src/" },
+    { include = "choices", from = "../../components/choices/src/" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-polls = { path = "../../components/polls/", develop = false }
+# choices = { path = "../../components/choices/", develop = true }
+# questions = { path = "../../components/questions/", develop = true }
