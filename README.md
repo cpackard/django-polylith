@@ -152,13 +152,13 @@ The development project is where we specify all the components, bases and librar
 You can create a new component using the project's command:
 
 ```shell
-create_component <new_component_name>
+create-component <new_component_name>
 ```
 
 You can also get help for any command by passing the `--help` flag:
 
 ```shell
-create_component --help
+create-component --help
 ```
 
 ### Create migrations
