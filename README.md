@@ -55,6 +55,8 @@ Each component lives in a separate directory in the `components` folder and cont
 
 The `interface.py` module is a set of functions using native data structures (e.g. lists and maps) for inputs and outputs. Each function in the `interface` module "passes-through" to an equivalent function in `core.py`, which enables encapsulation and allows for any private implementation (like using the ORM).
 
+- This constraint is necessary both as a “protocol” between components and to ensure encapsulation. For example: if the `questions` module returned `Question` ORM objects, that would expose the implementation details of using the ORM, and allow callers to use methods on the object for functionality instead of those from `questions.interface`.
+
 `apps.py` is the module for [Django app configuration](https://docs.djangoproject.com/en/4.1/ref/applications/#configuring-applications) and `models.py` is the standard module for data models. The `pyproject.toml` file is for specifying any libraries needed by the component.
 
 ```
