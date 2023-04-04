@@ -1,4 +1,5 @@
-from demo_namespace.choices import core
+# Third-Party Libraries
+from cpackard.choices import core
 
 
 def test_sample():

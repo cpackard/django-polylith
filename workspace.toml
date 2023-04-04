@@ -1,5 +1,5 @@
 [tool.polylith]
-namespace = "demo_namespace"
+namespace = "cpackard"
 git_tag_pattern = "stable-*"
 
 [tool.polylith.structure]

@@ -7,10 +7,12 @@ For more information on this file, see
 https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/
 """
 
+# Standard Library
 import os
 
+# Django Libraries
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'demo_namespace.api.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "cpackard.api.settings")
 
 application = get_wsgi_application()

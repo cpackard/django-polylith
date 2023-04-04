@@ -6,9 +6,9 @@ authors = ['Christian Packard <6462409+cpackard@users.noreply.github.com>']
 license = ""
 
 packages = [
-         {include = "demo_namespace/choices", from = "../../components"},
-         {include = "demo_namespace/questions", from = "../../components"},
-         {include = "demo_namespace/api", from = "../../bases"}
+         {include = "cpackard/choices", from = "../../components"},
+         {include = "cpackard/questions", from = "../../components"},
+         {include = "cpackard/api", from = "../../bases"}
 ]
 
 [tool.poetry.dependencies]

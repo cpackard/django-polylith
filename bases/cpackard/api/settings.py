@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_extensions",
-    "demo_namespace.questions",
-    "demo_namespace.choices",
+    "cpackard.questions",
+    "cpackard.choices",
 ]
 
 
@@ -54,7 +54,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "demo_namespace.api.urls"
+ROOT_URLCONF = "cpackard.api.urls"
 
 TEMPLATES = [
     {
@@ -72,7 +72,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "demo_namespace.api.wsgi.application"
+WSGI_APPLICATION = "cpackard.api.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

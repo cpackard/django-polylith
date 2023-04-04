@@ -6,9 +6,9 @@ authors = ["Christian Packard <6462409+cpackard@users.noreply.github.com>"]
 readme = "README.md"
 packages = [
          {include = "development"},
-         {include = "demo_namespace/choices", from = "components"},
-         {include = "demo_namespace/questions", from = "components"},
-         {include = "demo_namespace/api", from = "bases"}
+         {include = "cpackard/choices", from = "components"},
+         {include = "cpackard/questions", from = "components"},
+         {include = "cpackard/api", from = "bases"}
 ]
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -18,7 +18,7 @@ pytest = "^7.2.2"
 pytest-django = "^4.5.2"
 
 [tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "demo_namespace.api.settings"
+DJANGO_SETTINGS_MODULE = "cpackard.api.settings"
 
 [tool.black]
 line-length = 120
