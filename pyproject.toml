@@ -1,15 +1,24 @@
-[build-system]
-requires = [ "poetry-core",]
-build-backend = "poetry.core.masonry.api"
-
 [tool.poetry]
-name = "Polylith Django Demo"
+name = "python-polylith-test"
 version = "0.1.0"
-description = "Demo of the Polylith architecture using Django apps."
-authors = [ "Christian Packard <christian@cpacklabs.com>",]
+description = ""
+authors = ["Christian Packard <6462409+cpackard@users.noreply.github.com>"]
 readme = "README.md"
-[[tool.poetry.packages]]
-include = "development"
+packages = [
+         {include = "development"},
+         {include = "demo_namespace/choices", from = "components"},
+         {include = "demo_namespace/questions", from = "components"},
+         {include = "demo_namespace/api", from = "bases"}
+]
+[tool.poetry.dependencies]
+python = "^3.10"
+pytz = "^2022.7.1"
+django-extensions = {version = "^3.2.1"}
+pytest = "^7.2.2"
+pytest-django = "^4.5.2"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "demo_namespace.api.settings"
 
 [tool.black]
 line-length = 120
@@ -26,41 +35,13 @@ known_firstparty = [ "api",]
 known_django = [ "django", "rest_framework",]
 sections = [ "FUTURE", "STDLIB", "THIRDPARTY", "DJANGO", "FIRSTPARTY", "LOCALFOLDER",]
 
-[tool.poetry.dependencies]
-python = "^3.11"
-django = "^4.1.7"
-django-extensions = "^3.2.1"
-pytest = "^7.2.2"
-pytest-django = "^4.5.2"
-toml = "^0.10.2"
-
-[tool.poetry.scripts]
-create-component = "development.scripts:create_component"
-
-[tool.pytest.ini_options]
-DJANGO_SETTINGS_MODULE = "development.settings"
-
-[tool.poetry.dependencies.questions]
-path = "components/questions"
-develop = true
-
-[tool.poetry.dependencies.choices]
-path = "components/choices"
-develop = true
-
-[tool.poetry.dependencies.api]
-path = "bases/api"
-develop = true
-
-[tool.poetry.dependencies.api_project]
-path = "projects/api"
-develop = true
-
 [tool.poetry.group.dev.dependencies]
 black = "^23.1.0"
 mypy = "^1.0.1"
 isort = "^5.12.0"
 requests = "^2.28.2"
+django-stubs = "^1.16.0"
+django-types = "^0.17.0"
 
 [tool.poetry.group.emacs.dependencies]
 python-lsp-server = "^1.7.1"
@@ -71,3 +52,7 @@ importmagic = "^0.1.7"
 epc = "^0.0.5"
 werkzeug = "^2.2.3"
 debugpy = "^1.6.6"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
