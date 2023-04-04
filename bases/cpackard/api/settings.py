@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "cpackard.questions",
     "cpackard.choices",
+    "cpackard.surveys",
 ]
 
 

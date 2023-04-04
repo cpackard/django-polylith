@@ -28,18 +28,14 @@ class TestChoices(TestCase):
         qid = created_question["id"]
 
         first_choice = "Aye, aye!"
-        first_choice_res = c.post(
-            "/api/choices/", {"question": qid, "choice": first_choice}
-        )
+        first_choice_res = c.post("/api/choices/", {"question": qid, "choice": first_choice})
         assert first_choice_res.status_code == 201
         first_choice_data = first_choice_res.json()["result"]
         first_choice_data["question_id"] = int(first_choice_data["question"])
         del first_choice_data["question"]
 
         second_choice = "Raincheck?"
-        second_choice_res = c.post(
-            "/api/choices/", {"question": qid, "choice": second_choice}
-        )
+        second_choice_res = c.post("/api/choices/", {"question": qid, "choice": second_choice})
         assert second_choice_res.status_code == 201
         second_choice_data = second_choice_res.json()["result"]
         second_choice_data["question_id"] = int(second_choice_data["question"])
@@ -48,6 +44,21 @@ class TestChoices(TestCase):
         # TODO: cleanup this questionable API
         get_response = c.get("/api/choices/", {"question": qid})
         assert get_response.status_code == 200
+        assert get_response.json() == {"result": [first_choice_data, second_choice_data]}
+
+
+class TestSurveys(TestCase):
+    def test_create_and_find_surveys(self) -> None:
+        c = Client()
+
+        satisfaction = 5
+        response_text = "Not bad!"
+
+        post_response = c.post("/api/surveys/", {"satisfaction": satisfaction, "response_text": response_text})
+        assert post_response.status_code == 201
+
+        get_response = c.get("/api/surveys/", {"satisfaction": satisfaction})
+        assert get_response.status_code == 200
         assert get_response.json() == {
-            "result": [first_choice_data, second_choice_data]
+            "result": [{"id": 1, "satisfaction": satisfaction, "response_text": response_text}]
         }
