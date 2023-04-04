@@ -1,6 +1,6 @@
 # Polylith Django Demo
 
-Project demoing the [Polylith architecture](https://polylith.gitbook.io/polylith/) using the Django [app system](https://docs.djangoproject.com/en/4.1/ref/applications/).
+Project demoing the [Polylith architecture](https://polylith.gitbook.io/polylith/) using the Django [app system](https://docs.djangoproject.com/en/4.1/ref/applications/) and the [Python Polylith](https://davidvujic.github.io/python-polylith-docs/) tool.
 
 ## Setup
 
@@ -51,26 +51,24 @@ Below are the Django-specific details of each term.
 <details><summary>Component</summary>
 <p>
 
-Each component lives in a separate directory in the `components` folder and contains a `src/<component>` and `tests` directory.
+Each component lives in a separate directory in the `components` folder and namespace.
 
-The `interface.py` module is a set of functions using native data structures (e.g. lists and maps) for inputs and outputs. Each function in the `interface` module "passes-through" to an equivalent function in `core.py`, which enables encapsulation and allows for any private implementation (like using the ORM).
+The `core.py` module is a set of functions using native data structures (e.g. lists and maps) for inputs and outputs. These functions are then exported in the `__all__` attribute of the component's `__init__.py` file.
 
-- This constraint is necessary both as a “protocol” between components and to ensure encapsulation. For example: if the `questions` module returned `Question` ORM objects, that would expose the implementation details of using the ORM, and allow callers to use methods on the object for functionality instead of those from `questions.interface`.
+- The constraint of native data structures for input/output is necessary both as a “protocol” between components and to ensure encapsulation. For example: if the `questions` module returned `Question` ORM objects, that would expose the implementation details of using the ORM, and allow callers to use methods on the object for functionality instead of those from `questions.interface`.
 
-`apps.py` is the module for [Django app configuration](https://docs.djangoproject.com/en/4.1/ref/applications/#configuring-applications) and `models.py` is the standard module for data models. The `pyproject.toml` file is for specifying any libraries needed by the component.
+`apps.py` is the module for [Django app configuration](https://docs.djangoproject.com/en/4.1/ref/applications/#configuring-applications) and `models.py` is the standard module for data models.
 
 ```
 ▾ workspace
   ▾ components
-    ▾ questions
-      ▾ src
-        ▾ questions
-          ▸ migrations
-          __init__.py
-          apps.py
-          core.py
-          interface.py
-          models.py
+    ▾ cpackard
+      ▾ questions
+        ▸ migrations
+        __init__.py
+        apps.py
+        core.py
+        models.py
       ▸ tests
       pyproject.toml
 ```
@@ -81,22 +79,22 @@ The `interface.py` module is a set of functions using native data structures (e.
 <details><summary>Base</summary>
 <p>
 
-Like components, each base lives in a separate directory in the `bases` folder and contains a `src/<base>` and `tests` directory, and they also include the `apps.py` configuration module.
+Like components, each base lives in a separate directory in the `bases` folder and namespace.
 
-Bases expose component interfaces through endpoint functions defined in the conventional Django `views.py` module, which have their routes defined in `urls.py`.
+Bases expose component interfaces through endpoint functions defined in the conventional Django `views.py` module, which have their routes defined in `urls.py`. They also hold the common top-level Django configuration modules like `settings.py` and `wsgi.py`.
 
 ```
 ▾ workspace
   ▾ bases
-    ▾ api
-      ▾ src
-        ▾ api
-          __init__.py
-          apps.py
-          urls.py
-          views.py
-      ▸ tests
-      pyproject.toml
+    ▾ cpackard
+      ▾ api
+        __init__.py
+        asgi.py
+        manage.py
+        settings.py
+        urls.py
+        views.py
+        wsgi.py
 ```
 
 </p>
@@ -107,21 +105,15 @@ Bases expose component interfaces through endpoint functions defined in the conv
 
 A project is the result of combining one base (or in rare cases several bases) with multiple components and libraries.
 
-Unlike bases and components, projects have no `src` or `tests` directories because they contain no logic of their own. Instead, they hold the common top-level Django configuration modules like `settings.py` and `wsgi.py`. They combine the urls from any bases used into their own `urls.py`.
-
-A project's `pyproject.toml` includes the components and bases as dependencies for the final artifact.
+Unlike bases and components, projects have no `src` or `tests` directories because they contain no logic of their own. Instead, they have the `pyproject.toml` includes the components, bases, and required libs as dependencies for the final artifact.
 
 ```
 ▾ workspace
   ▾ projects
-    ▾ api
-      ▾ api_project
-        __init__.py
-        apps.py
-        settings.py
-        urls.py
-        wsgi.py
+    ▾ monolith-api
+      __init__.py
       pyproject.toml
+      poetry.lock
 ```
 
 </p>
@@ -130,16 +122,40 @@ A project's `pyproject.toml` includes the components and bases as dependencies f
 <details><summary>Development Project</summary>
 <p>
 
-The development project is where we specify all the components, bases and libraries that we want to work with. Like other projects, they have a `settings.py` and `urls.py` modules, but these are used to work with components and bases across *any* project for local development. These dependencies are specified in the top-level `pyproject.toml` file. Additionally, it includes a `scripts.py` module to define helper commands available from a `poetry shell`.
+The development folder is where you can put code that you write to experiment or try out features. Here, you add all dependencies and bricks. This will make it possible to have the entire code-base available in one and the same virtual environment.
+
+In this folder, it is quite common that developers keep their scratch-style Python modules. It is perfectly fine to version control them.
 
 ```
 ▾ workspace
   ▾ development
     __init__.py
-    scripts.py
-    settings.py
-    urls.py
+    cpackard.py
   pyproject.toml
+```
+
+</p>
+</details>
+
+<details><summary>Tests</summary>
+<p>
+
+Tests are kept in a separate `test` folder in the top-level of the repo. Tests are organized by brick type and namespace:
+
+```
+▾ workspace
+  ▾ test
+    ▾ bases
+      ▾ cpackard
+        ▾ api
+          __init__.py
+          test_views.py
+    ▾ components
+      ▾ cpackard
+        ▸ choices
+        ▾ questions
+          __init__.py
+          test_core.py
 ```
 
 </p>
@@ -152,14 +168,10 @@ The development project is where we specify all the components, bases and librar
 You can create a new component using the project's command:
 
 ```shell
-create-component <new_component_name>
+poetry poly create component --name questions
 ```
 
-You can also get help for any command by passing the `--help` flag:
-
-```shell
-create-component --help
-```
+For more info on other commands, see the [Python Polylith docs](https://davidvujic.github.io/python-polylith-docs/commands/).
 
 ### Create migrations
 
@@ -197,4 +209,4 @@ To run tests for the entire project, run this command from the root of the repo:
 pytest -v
 ```
 
-By default, this command will use the `DJANGO_SETTINGS_MODULE = "development.settings"` attribute in the root-level `pyproject.toml`. You can override this by setting a `DJANGO_SETTINGS_MODULE` environment variable or by passing the `--ds` CLI flag like `pytest --ds=api_project.settings`. See the [pytest-django docs](https://pytest-django.readthedocs.io/en/latest/configuring_django.html#) for more info.
+By default, this command will use the `DJANGO_SETTINGS_MODULE = "cpackard.api.settings"` attribute in the root-level `pyproject.toml`. You can override this by setting a `DJANGO_SETTINGS_MODULE` environment variable or by passing the `--ds` CLI flag like `pytest --ds=cpackard.api.settings`. See the [pytest-django docs](https://pytest-django.readthedocs.io/en/latest/configuring_django.html#) for more info.
