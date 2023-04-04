@@ -1,7 +1,7 @@
 # Django Libraries
-from django.apps import AppConfig
+from django import apps as django_apps
 
 
-class QuestionsConfig(AppConfig):
+class QuestionsConfig(django_apps.AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "cpackard.questions"

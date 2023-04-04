@@ -1,10 +1,9 @@
-# Third-Party Libraries
-from cpackard.choices import interface as choices
-from cpackard.questions import interface as questions
-
 # Django Libraries
 from django.http import HttpRequest, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+
+# Polylith Bricks
+from cpackard import choices, questions
 
 
 @csrf_exempt

@@ -29,9 +29,9 @@ multi_line_output = 3
 import_heading_stdlib = "Standard Library"
 import_heading_thirdparty = "Third-Party Libraries"
 import_heading_django = "Django Libraries"
-import_heading_firstparty = "API Modules"
+import_heading_firstparty = "Polylith Bricks"
 import_heading_localfolder = "Local Modules"
-known_firstparty = [ "api",]
+known_firstparty = [ "cpackard",]
 known_django = [ "django", "rest_framework",]
 sections = [ "FUTURE", "STDLIB", "THIRDPARTY", "DJANGO", "FIRSTPARTY", "LOCALFOLDER",]
 

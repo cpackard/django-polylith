@@ -2,10 +2,8 @@
 from typing import TypedDict
 
 # Django Libraries
+from django.apps import apps
 from django.forms.models import model_to_dict
-
-# Local Modules
-from .models import Choice as ChoiceModel
 
 
 class Choice(TypedDict):
@@ -15,13 +13,13 @@ class Choice(TypedDict):
 
 
 def find_choices(question: int) -> list[Choice] | None:
-    return [
-        choice for choice in ChoiceModel.objects.filter(question_id=question).values()
-    ]
+    """Return all choices for the given `question`."""
+    model = apps.get_model("choices", "Choice")
+    return [choice for choice in model.objects.filter(question_id=question).values()]
 
 
 def create_choice(question: int, choice: str) -> Choice:
-    new_choice = ChoiceModel.objects.create(
-        question_id=question, choice_text=choice, votes=0
-    )
+    """Create a new `choice` associated with `question`."""
+    model = apps.get_model("choices", "Choice")
+    new_choice = model.objects.create(question_id=question, choice_text=choice, votes=0)
     return model_to_dict(new_choice)
