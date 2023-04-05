@@ -1,46 +1,29 @@
 # Django Libraries
 from rest_framework import permissions, viewsets
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.request import Request
 from rest_framework.response import Response
 
 # Polylith Bricks
-from cpackard import choices, questions, surveys, users
+from cpackard import choices, questions, surveys
+from cpackard.users import core as users
+
+
+class QuestionsPermission(permissions.BasePermission):
+    """
+    Global permission check for accessing questions.
+    """
+
+    def has_permission(self, request, view):
+        return users.email_check(request)
 
 
 @api_view(["GET", "POST"])
-def surveys_view(request: Request) -> Response:
-    querydict = request.GET if request.method == "GET" else request.POST
-    satisfaction = next(iter(querydict.get("satisfaction", [])), None)
-
-    if satisfaction is None:
-        return Response({"errors": ['You must include the "satisfaction" parameter.']}, status=400)
-
-    if request.method == "GET":
-        return Response({"result": surveys.find_positive_surveys(satisfaction)})
-
-    elif request.method == "POST":
-        response_text = querydict["response_text"]
-
-        if response_text is None:
-            return Response({"errors": ['You must include the "response_text" parameter.']}, status=400)
-
-        return Response({"result": surveys.create_survey(satisfaction, response_text)}, status=201)
-
-    return Response({"errors": ["Unsupported method."]}, status=405)
-
-
-@api_view(["GET", "POST"])
+@permission_classes([QuestionsPermission])
 def questions_view(request: Request) -> Response:
     querydict = request.GET if request.method == "GET" else request.POST
-    # question = querydict.get("question", [None])[0]
-    # question: str = next(iter(querydict.get("question", [])), None)
-    question: str = querydict["question"]
-    # username: str = querydict["username"]
-
-    # ok = users.email_check(username)
-    # if not ok:
-    #     return Response({"errors": ["You do not have permissions to use this resource."]}, status=403)
+    question = querydict.get("question", [None])[0]
+    question: str = next(iter(querydict.get("question", [])), None)
 
     if question is None:
         return Response({"errors": ['You must include the "question" parameter.']}, status=400)

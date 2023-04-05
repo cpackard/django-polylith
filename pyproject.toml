@@ -9,6 +9,7 @@ packages = [
          {include = "cpackard/choices", from = "components"},
          {include = "cpackard/questions", from = "components"},
          {include = "cpackard/surveys", from = "components"},
+         {include = "cpackard/users", from = "components"},
          {include = "cpackard/api", from = "bases"}
 ]
 [tool.poetry.dependencies]
@@ -19,6 +20,7 @@ pytest = "^7.2.2"
 pytest-django = "^4.5.2"
 djangorestframework = "^3.14.0"
 djoser = "^2.1.0"
+djangorestframework-simplejwt = "^5.2.2"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "cpackard.api.settings"

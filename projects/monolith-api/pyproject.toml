@@ -9,6 +9,7 @@ packages = [
          {include = "cpackard/choices", from = "../../components"},
          {include = "cpackard/questions", from = "../../components"},
          {include = "cpackard/surveys", from = "components"},
+         {include = "cpackard/users", from = "components"},
          {include = "cpackard/api", from = "../../bases"}
 ]
 
