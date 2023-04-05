@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     "rest_framework.authtoken",
     "cpackard.questions",
     "cpackard.choices",
-    "cpackard.surveys",
     "cpackard.authentication",
 ]
 
