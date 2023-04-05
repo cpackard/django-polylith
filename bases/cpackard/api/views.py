@@ -6,7 +6,7 @@ from rest_framework.response import Response
 
 # Polylith Bricks
 from cpackard import choices, questions, surveys
-from cpackard.authentication import core as auth
+from cpackard.authentication import interface as auth
 
 
 class QuestionsPermission(permissions.BasePermission):

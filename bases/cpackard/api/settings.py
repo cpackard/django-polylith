@@ -139,5 +139,5 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    "TOKEN_OBTAIN_SERIALIZER": "cpackard.authentication.core.JwtTokenObtainPairSerializer",
+    "TOKEN_OBTAIN_SERIALIZER": "cpackard.authentication.interface.JwtTokenObtainPairSerializer",
 }
