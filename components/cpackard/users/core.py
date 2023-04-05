@@ -26,7 +26,7 @@ def email_check(request: Request) -> bool:
         return False
 
 
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+class JwtTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
     def get_token(cls, user):
         token = super().get_token(user)
