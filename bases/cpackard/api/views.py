@@ -38,6 +38,7 @@ def questions_view(request: Request) -> Response:
 
 
 @api_view(["GET", "POST"])
+@permission_classes([])
 def choices_view(request: Request) -> Response:
     querydict = request.GET if request.method == "GET" else request.POST
     question: int = next(iter(querydict.get("question", [])), None)

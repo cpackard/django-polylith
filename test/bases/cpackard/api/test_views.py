@@ -4,6 +4,7 @@ from random import randint
 
 # Third-Party Libraries
 import pytest
+import requests
 
 # Django Libraries
 from django.test import Client
@@ -13,10 +14,10 @@ from django.test import Client
 def user_token(client: Client):
     user_num = randint(0, int(1e7))
     credentials = {"username": f"user{user_num}", "email": f"user{user_num}@nosus.com", "password": "Test123@$"}
-    response = client.post("/api/auth/users/", credentials)
+    response = requests.post("http://localhost:8001/api/auth/users/", credentials)
     assert response.status_code == 201, response.json()
 
-    jwt_res = client.post("/api/auth/jwt/create/", credentials)
+    jwt_res = requests.post("http://localhost:8001/api/auth/jwt/create/", credentials)
     assert jwt_res.status_code == 200, jwt_res.json()
     access_token = jwt_res.json()["access"]
 

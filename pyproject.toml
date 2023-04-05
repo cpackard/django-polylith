@@ -9,8 +9,10 @@ packages = [
          {include = "cpackard/choices", from = "components"},
          {include = "cpackard/questions", from = "components"},
          {include = "cpackard/authentication", from = "components"},
+         {include = "cpackard/auth_service", from = "bases"},
          {include = "cpackard/api", from = "bases"}
 ]
+
 [tool.poetry.dependencies]
 python = "^3.10"
 pytz = "^2022.7.1"
