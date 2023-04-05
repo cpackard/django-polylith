@@ -17,6 +17,8 @@ pytz = "^2022.7.1"
 django-extensions = {version = "^3.2.1"}
 pytest = "^7.2.2"
 pytest-django = "^4.5.2"
+djangorestframework = "^3.14.0"
+djoser = "^2.1.0"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "cpackard.api.settings"
@@ -35,6 +37,15 @@ import_heading_localfolder = "Local Modules"
 known_firstparty = [ "cpackard",]
 known_django = [ "django", "rest_framework",]
 sections = [ "FUTURE", "STDLIB", "THIRDPARTY", "DJANGO", "FIRSTPARTY", "LOCALFOLDER",]
+
+[tool.mypy]
+ignore_missing_imports = true
+check_untyped_defs = true
+disallow_untyped_defs = true
+follow_imports = "skip"
+
+[tool.mypy.plugins.django-stubs]
+django_settings_module = "cpackard.api.settings"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.1.0"
