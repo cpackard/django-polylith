@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "djoser",
-    "rest_framework.authtoken",
     "cpackard.questions",
     "cpackard.choices",
     "cpackard.authentication",

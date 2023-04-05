@@ -3,8 +3,6 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 # Django Libraries
-from django.apps import apps
-from django.contrib.auth import authenticate, login
 from rest_framework.request import Request
 
 
