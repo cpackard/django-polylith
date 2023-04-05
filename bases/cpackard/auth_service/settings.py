@@ -13,9 +13,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 # Standard Library
 from pathlib import Path
 
-# Django Libraries
-from django.apps import apps
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -41,8 +38,7 @@ INSTALLED_APPS = [
     "django_extensions",
     "rest_framework",
     "rest_framework_simplejwt",
-    "cpackard.questions",
-    "cpackard.choices",
+    "djoser",
     "cpackard.authentication",
 ]
 
@@ -57,7 +53,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "cpackard.api.urls"
+ROOT_URLCONF = "cpackard.auth_service.urls"
 
 TEMPLATES = [
     {
@@ -75,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "cpackard.api.wsgi.application"
+WSGI_APPLICATION = "cpackard.auth_service.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -132,6 +128,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticatedOrReadOnly"],
     "DEFAULT_AUTHENTICATION_CLASSES": [
-        "cpackard.authentication.interface.JWTAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework_simplejwt.authentication.JWTStatelessUserAuthentication",
     ],
+}
+
+SIMPLE_JWT = {
+    "TOKEN_OBTAIN_SERIALIZER": "cpackard.authentication.interface.JwtTokenObtainPairSerializer",
 }

@@ -11,3 +11,7 @@ def email_check(request: Request) -> bool:
 
 class JwtTokenObtainPairSerializer(core.JwtTokenObtainPairSerializer):
     pass
+
+
+class JWTAuthentication(core.JWTAuthentication):
+    pass
