@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "cpackard.questions",
     "cpackard.choices",
     "cpackard.surveys",
-    "cpackard.users",
+    "cpackard.authentication",
 ]
 
 
@@ -139,5 +139,5 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    "TOKEN_OBTAIN_SERIALIZER": "cpackard.users.core.JwtTokenObtainPairSerializer",
+    "TOKEN_OBTAIN_SERIALIZER": "cpackard.authentication.core.JwtTokenObtainPairSerializer",
 }

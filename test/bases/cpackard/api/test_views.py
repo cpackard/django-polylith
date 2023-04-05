@@ -8,9 +8,6 @@ import pytest
 # Django Libraries
 from django.test import Client
 
-# Polylith Bricks
-from cpackard import users
-
 
 @pytest.fixture
 def user_token(client: Client):

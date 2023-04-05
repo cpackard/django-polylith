@@ -6,7 +6,7 @@ from rest_framework.response import Response
 
 # Polylith Bricks
 from cpackard import choices, questions, surveys
-from cpackard.users import core as users
+from cpackard.authentication import core as auth
 
 
 class QuestionsPermission(permissions.BasePermission):
@@ -15,7 +15,7 @@ class QuestionsPermission(permissions.BasePermission):
     """
 
     def has_permission(self, request, view):
-        return users.email_check(request)
+        return auth.email_check(request)
 
 
 @api_view(["GET", "POST"])
