@@ -1,0 +1,3 @@
+[flake8]
+exclude=.github, **/migrations/
+max-line-length = 120

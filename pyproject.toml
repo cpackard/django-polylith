@@ -8,6 +8,7 @@ packages = [
          {include = "development"},
          {include = "cpackard/choices", from = "components"},
          {include = "cpackard/questions", from = "components"},
+         {include = "cpackard/authentication", from = "components"},
          {include = "cpackard/api", from = "bases"}
 ]
 [tool.poetry.dependencies]
@@ -16,6 +17,9 @@ pytz = "^2022.7.1"
 django-extensions = {version = "^3.2.1"}
 pytest = "^7.2.2"
 pytest-django = "^4.5.2"
+djangorestframework = "^3.14.0"
+djoser = "^2.1.0"
+djangorestframework-simplejwt = "^5.2.2"
 
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "cpackard.api.settings"
@@ -35,6 +39,15 @@ known_firstparty = [ "cpackard",]
 known_django = [ "django", "rest_framework",]
 sections = [ "FUTURE", "STDLIB", "THIRDPARTY", "DJANGO", "FIRSTPARTY", "LOCALFOLDER",]
 
+[tool.mypy]
+ignore_missing_imports = true
+check_untyped_defs = true
+disallow_untyped_defs = true
+follow_imports = "skip"
+
+[tool.mypy.plugins.django-stubs]
+django_settings_module = "cpackard.api.settings"
+
 [tool.poetry.group.dev.dependencies]
 black = "^23.1.0"
 mypy = "^1.0.1"
@@ -42,6 +55,7 @@ isort = "^5.12.0"
 requests = "^2.28.2"
 django-stubs = "^1.16.0"
 django-types = "^0.17.0"
+flake8 = "^6.0.0"
 
 [tool.poetry.group.emacs.dependencies]
 python-lsp-server = "^1.7.1"
