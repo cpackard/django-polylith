@@ -6,7 +6,7 @@ authors = ['Christian Packard <6462409+cpackard@users.noreply.github.com>']
 license = ""
 
 packages = [
-         {include = "cpackard/authentication", from = "../../components"},
+         {include = "cpackard/choices", from = "../../components"},
          {include = "cpackard/processing_worker", from = "../../bases"},
 ]
 

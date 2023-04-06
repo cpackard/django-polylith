@@ -45,7 +45,7 @@ def choices_view(request: Request) -> Response:
         return Response({"errors": ['You must include the "question" parameter.']}, status=400)
 
     if request.method == "GET":
-        return Response({"result": choices.find_choices(question)})
+        return Response({"result": choices.order_choices(choices.find_choices(question))})
     elif request.method == "POST":
         choice: str = next(iter(querydict.get("choice", [])), None)
         if choice is None:
