@@ -1,4 +1,4 @@
-from cpackard.choices import core
+from cpackard.processing_worker import core
 
 
 def test_sample():

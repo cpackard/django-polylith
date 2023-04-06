@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework_simplejwt",
     "cpackard.questions",
-    "cpackard.choices",
+    "cpackard.choices_db",
     "cpackard.authentication",
 ]
 
