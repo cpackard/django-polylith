@@ -24,7 +24,6 @@ class QuestionsPermission(permissions.BasePermission):
 def questions_view(request: Request) -> Response:
     querydict = request.GET if request.method == "GET" else request.POST
     question = querydict.get("question", [None])[0]
-    question: str = next(iter(querydict.get("question", [])), None)
 
     if question is None:
         return Response({"errors": ['You must include the "question" parameter.']}, status=400)
