@@ -1,4 +1,5 @@
 # Polylith Bricks
+from cpackard.choices import interface as choices
 from cpackard.choices_db import core
 
 # Local Modules
@@ -13,3 +14,8 @@ def find_choices(question: int) -> list[Choice] | None:
 def create_choice(question: int, choice: str) -> Choice:
     """Create a new `choice` associated with `question`."""
     return core.create_choice(question, choice)
+
+
+def order_choices(unorder_choices: list[Choice]) -> list[Choice]:
+    """Order choices by votes, grouped by question."""
+    return choices.order_choices(unorder_choices)
