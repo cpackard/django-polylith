@@ -6,7 +6,8 @@ from rest_framework.response import Response
 
 # Polylith Bricks
 from cpackard.authentication import interface as auth
-from cpackard.choices_db import interface as choices
+from cpackard.choices import interface as choices
+from cpackard.choices_db import interface as choices_db
 from cpackard.questions import interface as questions
 
 
@@ -45,12 +46,12 @@ def choices_view(request: Request) -> Response:
         return Response({"errors": ['You must include the "question" parameter.']}, status=400)
 
     if request.method == "GET":
-        return Response({"result": choices.order_choices(choices.find_choices(question))})
+        return Response({"result": choices.order_choices(choices_db.find_choices(question))})
     elif request.method == "POST":
         choice: str = next(iter(querydict.get("choice", [])), None)
         if choice is None:
             return Response({"errors": ['You must include the "choice" parameter.']}, status=400)
 
-        return Response({"result": choices.create_choice(question, choice)}, status=201)
+        return Response({"result": choices_db.create_choice(question, choice)}, status=201)
 
     return Response({"errors": ["Unsupported method."]}, status=405)

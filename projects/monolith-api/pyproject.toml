@@ -7,6 +7,7 @@ license = ""
 
 packages = [
          {include = "cpackard/choices_db", from = "../../components"},
+         {include = "cpackard/choices", from = "../../components"},
          {include = "cpackard/questions", from = "../../components"},
          {include = "cpackard/authentication", from = "../../components"},
          {include = "cpackard/api", from = "../../bases"}

@@ -13,9 +13,6 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 # Standard Library
 from pathlib import Path
 
-# Django Libraries
-from django.apps import apps
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -43,6 +40,7 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt",
     "cpackard.questions",
     "cpackard.choices_db",
+    "cpackard.choices",
     "cpackard.authentication",
 ]
 
